@@ -33,7 +33,7 @@ titleDiv.innerText = shortcuts.meta.question
 inputField.addEventListener("keydown", event => {
     console.log(event)
     event.preventDefault()
-    if (event.keyCode == 80 && event.ctrlKey == true){
+    if (event.keyCode == shortcuts.data[0].answer[0] && event.keyCode == shortcuts.data[0].answer[1]){
         console.log('success')
     }
 })
