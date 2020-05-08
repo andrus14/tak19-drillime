@@ -3,7 +3,8 @@ const shortcuts = {
         {
             "question": "kopeeri",
             "answer": 67,
-            "hasCtrl": true
+            "hasCtrl": true,
+            "answerText": "ctrl + c"
         },
         {
             "question": "dubleeri",
@@ -41,6 +42,7 @@ inputField.addEventListener("keydown", event => {
     event.preventDefault()
     if ( event.ctrlKey == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
         console.log('success')
-        correctAnswerDiv.innerText = "õige vastus"
+        correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
+
     }
 })
