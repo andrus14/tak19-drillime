@@ -30,6 +30,8 @@ const shortcuts = {
 const inputField = document.querySelector("#input-field")
 const questionDiv = document.querySelector("#question")
 const titleDiv = document.querySelector("#title")
+const correctAnswerDiv = document.querySelector("#correct-answer")
+
 
 questionDiv.innerText = shortcuts.data[0].question
 titleDiv.innerText = shortcuts.meta.question
@@ -39,5 +41,6 @@ inputField.addEventListener("keydown", event => {
     event.preventDefault()
     if ( event.ctrlKey == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
         console.log('success')
+        correctAnswerDiv.innerText = "õige vastus"
     }
 })
