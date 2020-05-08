@@ -41,6 +41,7 @@ let incorrectCount = 0
 questionDiv.innerText = shortcuts.data[0].question
 titleDiv.innerText = shortcuts.meta.question
 correctCountDiv.innerText = correctCount
+incorrectCountDiv.innerText = incorrectCount
 
 inputField.addEventListener("keydown", event => {
     console.log(event)
@@ -50,6 +51,10 @@ inputField.addEventListener("keydown", event => {
         correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
         correctCount++
         correctCountDiv.innerText = correctCount
-        
+     
+    } else {
+        incorrectCount++
+        incorrectCountDiv.innerText = incorrectCount
     }
+    
 })
