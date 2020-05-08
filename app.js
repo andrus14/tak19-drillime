@@ -7,7 +7,7 @@ const shortcuts = {
         },
         {
             "question": "dubleeri",
-            "answer": 67,
+            "answer": 40,
             "hasAlt": true,
             "hasShift": true
         },
@@ -37,7 +37,7 @@ titleDiv.innerText = shortcuts.meta.question
 inputField.addEventListener("keydown", event => {
     console.log(event)
     event.preventDefault()
-    if ( event.hasCtrl == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
+    if ( event.ctrlKey == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
         console.log('success')
     }
 })
