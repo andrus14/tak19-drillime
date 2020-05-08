@@ -2,15 +2,19 @@ const shortcuts = {
     "data": [
         {
             "question": "kopeeri",
-            "answer": [17, 67]
+            "answer": 67,
+            "hasCtrl": true
         },
         {
-            "question": "comment",
-            "answer": [17, 75, 67]
+            "question": "dubleeri",
+            "answer": 67,
+            "hasAlt": true,
+            "hasShift": true
         },
         {
             "question": "kleebi",
-            "answer": [17, 86]
+            "answer": 86,
+            "hasCtrl": true
         }
 
     ],
@@ -33,7 +37,7 @@ titleDiv.innerText = shortcuts.meta.question
 inputField.addEventListener("keydown", event => {
     console.log(event)
     event.preventDefault()
-    if (event.keyCode == shortcuts.data[0].answer[0] && event.keyCode == shortcuts.data[0].answer[1]){
+    if ( event.hasCtrl == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
         console.log('success')
     }
 })
