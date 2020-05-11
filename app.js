@@ -1,20 +1,26 @@
 const shortcuts = {
     "data": [
         {
+            "question": "kommenteeri",
+            "answer": [75, 67],
+            "hasCtrl": true,
+            "answerText": "ctrl + k + c"
+        },
+        {
             "question": "kopeeri",
-            "answer": 67,
+            "answer": [67],
             "hasCtrl": true,
             "answerText": "ctrl + c"
         },
         {
             "question": "dubleeri",
-            "answer": 40,
+            "answer": [40],
             "hasAlt": true,
             "hasShift": true
         },
         {
             "question": "kleebi",
-            "answer": 86,
+            "answer": [86],
             "hasCtrl": true
         }
 
@@ -38,6 +44,7 @@ const incorrectCountDiv = document.querySelector("#incorrect-count")
 let correctCount = 0
 let incorrectCount = 0
 let keyDownHistory = []
+let keyDownHistoryText = []
 
 questionDiv.innerText = shortcuts.data[0].question
 titleDiv.innerText = shortcuts.meta.question
@@ -48,23 +55,28 @@ inputField.addEventListener("keydown", event => {
     console.log(event)
     event.preventDefault()
     if ( event.keyCode == 13){
+
+        if ( shortcuts.data[0].answer.toString() == keyDownHistory.toString() ) {
+            console.log('success')
+            correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
+            correctCount++
+            correctCountDiv.innerText = correctCount
+        } else {
+            incorrectCount++
+            incorrectCountDiv.innerText = incorrectCount
+        }
+    
         keyDownHistory = []
+        keyDownHistoryText = []
     } else {
-        keyDownHistory.push(event.keyCode)
+        keyDownHistoryText.push(event.key)
+        if ( event.keyCode != 17 && event.ctrlKey == shortcuts.data[0].hasCtrl ) {
+            keyDownHistory.push(event.keyCode)
+        }
     }
+    inputField.value = keyDownHistoryText.join('+')
 
     console.log(keyDownHistory)
 
-    inputField.value = inputField.value + ' ' + event.key
-    if ( event.ctrlKey == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
-        console.log('success')
-        correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
-        correctCount++
-        correctCountDiv.innerText = correctCount
-     
-    } else {
-        incorrectCount++
-        incorrectCountDiv.innerText = incorrectCount
-    }
     
 })
