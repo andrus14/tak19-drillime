@@ -55,6 +55,7 @@ inputField.addEventListener("keydown", event => {
 
     console.log(keyDownHistory)
 
+    inputField.value = inputField.value + ' ' + event.key
     if ( event.ctrlKey == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
         console.log('success')
         correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
