@@ -16,12 +16,14 @@ const shortcuts = {
             "question": "dubleeri",
             "answer": [40],
             "hasAlt": true,
-            "hasShift": true
+            "hasShift": true,
+            "answerText": "ctrl + alla nool"
         },
         {
             "question": "kleebi",
             "answer": [86],
-            "hasCtrl": true
+            "hasCtrl": true,
+            "answerText": "ctrl + V"
         }
 
     ],
@@ -45,32 +47,35 @@ let correctCount = 0
 let incorrectCount = 0
 let keyDownHistory = []
 let keyDownHistoryText = []
+let randomIndex  
 
-questionDiv.innerText = shortcuts.data[0].question
 titleDiv.innerText = shortcuts.meta.question
 correctCountDiv.innerText = correctCount
 incorrectCountDiv.innerText = incorrectCount
+
+showQuestion()
 
 inputField.addEventListener("keydown", event => {
     console.log(event)
     event.preventDefault()
     if ( event.keyCode == 13){
 
-        if ( shortcuts.data[0].answer.toString() == keyDownHistory.toString() ) {
+        if ( shortcuts.data[randomIndex].answer.toString() == keyDownHistory.toString() ) {
             console.log('success')
-            correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
             correctCount++
             correctCountDiv.innerText = correctCount
         } else {
             incorrectCount++
             incorrectCountDiv.innerText = incorrectCount
         }
-    
+        correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[randomIndex].answerText
+        showQuestion()
+        
         keyDownHistory = []
         keyDownHistoryText = []
     } else {
         keyDownHistoryText.push(event.key)
-        if ( event.keyCode != 17 && event.ctrlKey == shortcuts.data[0].hasCtrl ) {
+        if ( event.keyCode != 17 && event.ctrlKey == shortcuts.data[randomIndex].hasCtrl ) {
             keyDownHistory.push(event.keyCode)
         }
     }
@@ -80,3 +85,9 @@ inputField.addEventListener("keydown", event => {
 
     
 })
+
+function showQuestion() {
+    randomIndex = Math.floor(Math.random() * shortcuts.data.length)
+    questionDiv.innerText = shortcuts.data[randomIndex].question
+    
+}
