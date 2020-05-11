@@ -37,6 +37,7 @@ const incorrectCountDiv = document.querySelector("#incorrect-count")
 
 let correctCount = 0
 let incorrectCount = 0
+let keyDownHistory = []
 
 questionDiv.innerText = shortcuts.data[0].question
 titleDiv.innerText = shortcuts.meta.question
@@ -46,6 +47,14 @@ incorrectCountDiv.innerText = incorrectCount
 inputField.addEventListener("keydown", event => {
     console.log(event)
     event.preventDefault()
+    if ( event.keyCode == 13){
+        keyDownHistory = []
+    } else {
+        keyDownHistory.push(event.keyCode)
+    }
+
+    console.log(keyDownHistory)
+
     if ( event.ctrlKey == shortcuts.data[0].hasCtrl && event.keyCode == shortcuts.data[0].answer ){
         console.log('success')
         correctAnswerDiv.innerText = "õige vastus: " + shortcuts.data[0].answerText
